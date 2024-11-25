@@ -1,0 +1,1 @@
+CREATE DATABASE web_compra_venta;
