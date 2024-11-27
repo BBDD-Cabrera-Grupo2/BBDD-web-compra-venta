@@ -1,7 +1,3 @@
-INSERT INTO admin (dni, nombre) VALUES
-('60606060', 'Elena Soto'),
-('99999999', 'Micaela Correa');
-
 INSERT INTO comprador (dni, nombre) VALUES 
 ('12345678', 'Valentina Cabrera'),
 ('87654321', 'Joaquín Pérez'),
