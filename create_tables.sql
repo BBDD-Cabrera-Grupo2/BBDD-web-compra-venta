@@ -12,10 +12,11 @@ CREATE TABLE publicacion (
     vendedor INT,
     producto VARCHAR(200),
     categoria VARCHAR(200),
-    precio DECIMAL(10, 2) CHECK (precio > 1000), 
+    precio DECIMAL(10, 2), 
     disponible BOOLEAN,
     PRIMARY KEY (vendedor, producto), 
-    FOREIGN KEY (vendedor) REFERENCES vendedor(dni)
+    FOREIGN KEY (vendedor) REFERENCES vendedor(dni),
+    CHECK (precio > 1000),
 );
 
 CREATE TABLE caracteristica (
@@ -33,9 +34,10 @@ CREATE TABLE compra (
     estado_envio VARCHAR(50),
     estado_compra VARCHAR(50),
     fecha_compra DATE,
-    forma_de_pago VARCHAR(50),
+    forma_pago VARCHAR(50),
     monto_total DECIMAL(10, 2),
     PRIMARY KEY (comprador, vendedor, producto, fecha_compra),
     FOREIGN KEY (vendedor, producto) REFERENCES publicacion(vendedor, producto),
-    FOREIGN KEY (comprador) REFERENCES comprador(dni)
+    FOREIGN KEY (comprador) REFERENCES comprador(dni),
+    CHECK (NOT (estado_compra = 'CANCELADO' AND estado_envio = 'RECIBIDO'))
 );
