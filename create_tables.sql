@@ -1,46 +1,51 @@
-CREATE TABLE usuario (
+CREATE TABLE compradores (
     dni INT PRIMARY KEY, 
     nombre VARCHAR(50)
 );
 
-CREATE TABLE rol (
-    dni INT, 
-    rol VARCHAR(50), 
-    PRIMARY KEY (dni, rol), 
-    FOREIGN KEY (dni) REFERENCES usuario(dni)
-);
-
-CREATE TABLE producto (
-    nombre_producto VARCHAR(200) PRIMARY KEY, 
-    categoria VARCHAR(100)
+CREATE TABLE vendedores (
+    dni INT PRIMARY KEY, 
+    nombre VARCHAR(50)
 );
 
 CREATE TABLE publicacion (
-    vendedor INT, 
-    producto VARCHAR(200), 
+    vendedor INT,
+    nombre_producto VARCHAR(200), 
     precio DECIMAL(10, 2) CHECK (precio > 1000), 
+    disponible BOOLEAN,
     PRIMARY KEY (vendedor, producto), 
-    FOREIGN KEY (vendedor) REFERENCES usuario(dni), 
-    FOREIGN KEY (producto) REFERENCES producto(nombre_producto)
+    FOREIGN KEY (vendedor) REFERENCES vendedores(dni), 
 );
 
 CREATE TABLE caracteristica (
     caracteristica VARCHAR(200),
     producto VARCHAR(200),
     vendedor INT,
+    valor VARCHAR(200),
     PRIMARY KEY (caracteristica, producto, vendedor),
     FOREIGN KEY (producto, vendedor) REFERENCES publicacion(producto, vendedor)
 );
 
-CREATE TABLE producto_comprado (
+CREATE TABLE categoria (
+    categoria VARCHAR(200),
+    producto VARCHAR(200),
+    vendedor INT,
+    PRIMARY KEY (categoria, producto, vendedor),
+    FOREIGN KEY (producto, vendedor) REFERENCES publicacion(producto, vendedor)
+    FOREIGN KEY (vendedor) REFERENCES vendedores(dni)
+);
+
+CREATE TABLE compra (
     vendedor INT,
     producto VARCHAR(200),
     comprador INT,
     estado_envio VARCHAR(50),
     estado_compra VARCHAR(50),
-    fecha_de_compra DATE,
-    forma_de_pago VARCHAR(50),
-    PRIMARY KEY (vendedor, producto),
+    fecha_compra DATE,
+    forma_pago VARCHAR(50),
+    monto_total DECIMAL(10, 2),
+    PRIMARY KEY (comprador, vendedor, producto, fecha_compra),
     FOREIGN KEY (vendedor, producto) REFERENCES publicacion(vendedor, producto),
-    FOREIGN KEY (comprador) REFERENCES usuario(dni)
+    FOREIGN KEY (vendedor) REFERENCES vendedores(dni),
+    FOREIGN KEY (comprador) REFERENCES compradores(dni)
 );
