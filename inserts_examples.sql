@@ -81,7 +81,6 @@ VALUES
 (66666666, 'Silla', 'Muebles', 22000, TRUE),
 (10101010, 'Agenda', 'Papelería', 1200, TRUE),
 (22222222, 'Campera', 'Ropa', 25000, TRUE),
-(34567890, 'Mesa', 'Muebles', 7000, FALSE),
 (70707070, 'Zapatillas', 'Calzado', 12000, TRUE),
 (56789012, 'Raqueta', 'Deportes', 14000, TRUE), 
 (34567890, 'Estantería', 'Muebles', 18000, TRUE),
@@ -100,11 +99,9 @@ VALUES
 (50505050, 'Sombrero', 'Ropa', 3500, TRUE), 
 (70707070, 'Mochila', 'Accesorios', 4500, TRUE), 
 (88888888, 'Cartera', 'Accesorios', 8500, TRUE), 
-(13131313, 'Lápiz', 'Papelería', 50, TRUE), 
-(22222222, 'Taza', 'Hogar', 300, TRUE), 
 (90909090, 'Platos', 'Hogar', 1200, TRUE), 
 (66666666, 'Mancuernas', 'Deportes', 10000, TRUE), 
-(12121212, 'Botella', 'Accesorios', 700, TRUE);
+(12121212, 'Botella', 'Accesorios', 1001, TRUE);
 
 INSERT INTO caracteristica (caracteristica, producto, vendedor) VALUES
 ('Alta performance', 'Laptop', 12345678),
