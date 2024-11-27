@@ -46,7 +46,7 @@ WITH compras_ultimos_30_dias AS (
     SELECT comprador, SUM(monto_total) AS total_gastado
     FROM compras
     WHERE fecha_compra >= date_trunc('month', CURRENT_DATE) - INTERVAL '1 month'
-    AND estado_compra = 'Completada'
+    AND estado_compra = 'COMPRADO'
     GROUP BY comprador
 )
 SELECT c.dni, c.nombre, co.total_gastado AS reputacion
@@ -58,7 +58,7 @@ WITH ventas_ultimos_30_dias AS (
     SELECT vendedor, SUM(monto_total) AS total_cobrado
     FROM compras
     WHERE fecha_compra >= date_trunc('month', CURRENT_DATE) - INTERVAL '1 month'
-    AND estado_compra = 'Completada'
+    AND estado_compra = 'COMPRADO'
     GROUP BY vendedor
 )
 SELECT v.dni, v.nombre, ve.total_cobrado AS reputacion
@@ -70,11 +70,11 @@ SELECT COUNT(*) AS cantidad_de_ventas
 FROM compras
 WHERE fecha_compra < '2024-11-28' 
 AND fecha_compra > '2024-11-01' 
-AND estado_compra = 'Completada';
+AND estado_compra = 'COMPRADO';
 
 /* Contabilizar el valor total de ventas de la plataforma para un rango de fechas */
 SELECT SUM(monto_total) AS valor_total_ventas
 FROM compras
 WHERE fecha_compra < '2024-11-28' 
 AND fecha_compra > '2024-11-01' 
-AND estado_compra = 'Completada';
+AND estado_compra = 'COMPRADO';
