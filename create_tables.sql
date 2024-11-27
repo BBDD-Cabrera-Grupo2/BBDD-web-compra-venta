@@ -19,7 +19,7 @@ CREATE TABLE publicacion (
     CHECK (precio > 0)
 );
 ALTER TABLE publicacion
-ADD CONSTRAINT publicacion_precio_min CHECK (precio > 900 OR NOT disponible);
+ADD CONSTRAINT publicacion_precio_min CHECK (precio > 1000 OR NOT disponible);
 
 CREATE TABLE caracteristica (
     caracteristica VARCHAR(200),
