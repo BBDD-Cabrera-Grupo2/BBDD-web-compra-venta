@@ -1,46 +1,41 @@
 /* Listar todos los productos de la plataforma */
-SELECT DISTINCT producto FROM publicaciones; 
+SELECT DISTINCT producto FROM publicacion; 
 
 /* Listar productos de la plataforma por categoría */
-WITH productos_seleccionados AS (
-    SELECT producto, vendedor 
-    FROM categorias
-    WHERE categoria = 'Tecnología'
-)
 SELECT * 
-FROM publicaciones p
-JOIN productos_seleccionados ps
-ON p.producto = ps.producto 
-AND p.vendedor = ps.vendedor;
+FROM publicacion p
+WHERE categoria = 'Tecnología';
 
 /* Crear una publicación para vender */
-INSERT INTO publicaciones (vendedor, producto, precio, disponible)
-VALUES (98765432, 'Bicicleta', 154000, true);
+INSERT INTO publicacion (vendedor, producto, categoria, precio, disponible)
+VALUES (98765432, 'Bicicleta', 'Deportes', 154000, TRUE);
 
 /* Actualizar una publicación de venta */
-UPDATE publicaciones
+UPDATE publicacion
 SET precio = 160000
 WHERE vendedor = 98765432 AND producto = 'Bicicleta';
 
 /* Realizar una compra */
 INSERT INTO compras (vendedor, producto, comprador, estado_envio, estado_compra, fecha_compra, forma_pago)
-VALUES (98765432, 'Bicicleta', 11111111, 'Pendiente', 'Completada', '2024-11-25', 'EFECTIVO');
+VALUES (98765432, 'Bicicleta', 11111111, 'EN PREPARACION', 'COMPRADO', '2024-11-25', 'EFECTIVO');
 
 /* Guardar un envío */
 UPDATE compras
-SET estado_envio = 'Entregado'
+SET estado_envio = 'RECIBIDO'
 WHERE vendedor = 98765432 AND producto = 'Bicicleta'
 AND comprador = 11111111 AND fecha_compra = '2024-11-25'; 
 
 /* Cancelar una compra */
 UPDATE compras
-SET estado_compra = 'Cancelado'
-WHERE vendedor = 98765432 AND producto = 'Bicicleta'
-AND comprador = 11111111 AND fecha_compra = '2024-11-25';
+SET estado_compra = 'CANCELADO', estado_envio = 'CANCELADO'
+WHERE vendedor = 98765432 
+AND producto = 'Bicicleta'
+AND comprador = 11111111 
+AND fecha_compra = '2024-11-25';
 
 /* Cancelar envío */
 UPDATE compras
-SET estado_envio = 'Cancelado'
+SET estado_envio = 'CANCELADO'
 WHERE vendedor = 98765432 AND producto = 'Bicicleta'
 AND comprador = 11111111 AND fecha_compra = '2024-11-25';
 
