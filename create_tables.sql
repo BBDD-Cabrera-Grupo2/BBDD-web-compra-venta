@@ -8,34 +8,34 @@ CREATE TABLE vendedores (
     nombre VARCHAR(50)
 );
 
-CREATE TABLE publicacion (
+CREATE TABLE publicaciones (
     vendedor INT,
-    nombre_producto VARCHAR(200), 
+    producto VARCHAR(200), 
     precio DECIMAL(10, 2) CHECK (precio > 1000), 
     disponible BOOLEAN,
     PRIMARY KEY (vendedor, producto), 
-    FOREIGN KEY (vendedor) REFERENCES vendedores(dni), 
+    FOREIGN KEY (vendedor) REFERENCES vendedores(dni)
 );
 
-CREATE TABLE caracteristica (
+CREATE TABLE caracteristicas (
     caracteristica VARCHAR(200),
     producto VARCHAR(200),
     vendedor INT,
     valor VARCHAR(200),
     PRIMARY KEY (caracteristica, producto, vendedor),
-    FOREIGN KEY (producto, vendedor) REFERENCES publicacion(producto, vendedor)
+    FOREIGN KEY (producto, vendedor) REFERENCES publicaciones(producto, vendedor)
 );
 
-CREATE TABLE categoria (
+CREATE TABLE categorias (
     categoria VARCHAR(200),
     producto VARCHAR(200),
     vendedor INT,
     PRIMARY KEY (categoria, producto, vendedor),
-    FOREIGN KEY (producto, vendedor) REFERENCES publicacion(producto, vendedor)
+    FOREIGN KEY (producto, vendedor) REFERENCES publicaciones(producto, vendedor),
     FOREIGN KEY (vendedor) REFERENCES vendedores(dni)
 );
 
-CREATE TABLE compra (
+CREATE TABLE compras (
     vendedor INT,
     producto VARCHAR(200),
     comprador INT,
@@ -45,7 +45,7 @@ CREATE TABLE compra (
     forma_pago VARCHAR(50),
     monto_total DECIMAL(10, 2),
     PRIMARY KEY (comprador, vendedor, producto, fecha_compra),
-    FOREIGN KEY (vendedor, producto) REFERENCES publicacion(vendedor, producto),
+    FOREIGN KEY (vendedor, producto) REFERENCES publicaciones(vendedor, producto),
     FOREIGN KEY (vendedor) REFERENCES vendedores(dni),
     FOREIGN KEY (comprador) REFERENCES compradores(dni)
 );
