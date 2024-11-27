@@ -16,8 +16,10 @@ CREATE TABLE publicacion (
     disponible BOOLEAN,
     PRIMARY KEY (vendedor, producto), 
     FOREIGN KEY (vendedor) REFERENCES vendedor(dni),
-    CHECK (precio > 1000)
+    CHECK (precio > 0)
 );
+ALTER TABLE publicacion
+ADD CONSTRAINT publicacion_precio_check CHECK (precio > 1000);
 
 CREATE TABLE caracteristica (
     caracteristica VARCHAR(200),
