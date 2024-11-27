@@ -1,6 +1,6 @@
 -- Rol admin
-CREATE ROLE admin LOGIN PASSWORD 'admin_pass';
-GRANT ALL PRIVILEGES ON DATABASE web_compra_venta TO admin;
+CREATE ROLE admin LOGIN PASSWORD 'admin_pass' CREATEROLE;
+GRANT ALL PRIVILEGES ON SCHEMA public TO admin;
 
 -- Rol vendedor
 CREATE ROLE vendedor LOGIN PASSWORD 'vendedor_pass';
