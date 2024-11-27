@@ -16,7 +16,7 @@ CREATE TABLE publicacion (
     disponible BOOLEAN,
     PRIMARY KEY (vendedor, producto), 
     FOREIGN KEY (vendedor) REFERENCES vendedor(dni),
-    CHECK (precio > 1000),
+    CHECK (precio > 1000)
 );
 
 CREATE TABLE caracteristica (
