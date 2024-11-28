@@ -1,6 +1,6 @@
-/* Modificar valor minimo de precio de publicacion */
+-- Modificar valor minimo de precio de publicacion
 ALTER TABLE publicacion
-DROP CONSTRAINT publicacion_precio_check;
+DROP CONSTRAINT publicacion_precio_min;
 
 ALTER TABLE publicacion
-ADD CONSTRAINT publicacion_precio_check CHECK (precio > 900 OR NOT disponible);
+ADD CONSTRAINT publicacion_precio_min CHECK (precio > 900 OR NOT disponible);
